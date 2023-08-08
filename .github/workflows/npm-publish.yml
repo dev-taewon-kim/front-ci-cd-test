@@ -46,8 +46,10 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
-          rm -rf /var/www/allergysafe.life/html
-          mkdir -p /var/www/allergysafe.life/html
+          sudo rm -rf /var/www/allergysafe.life/html
+          sudo mkdir -p /var/www/allergysafe.life/html
+          sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /var/www/allergysafe.life/html
+          
       
     - name: Transfer builded files via SCP
       run: scp -P ${{ secrets.SERVER_PORT }} -r ./public ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/var/www/allergysafe.life/html
