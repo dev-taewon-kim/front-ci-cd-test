@@ -51,6 +51,6 @@ jobs:
           sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /var/www/allergysafe.life/html
           
       
-    - name: Transfer builded files via SCP
-      run: scp -P ${{ secrets.SERVER_PORT }} -r ./public ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/var/www/allergysafe.life/html
+    - name: Transfer builded files via rsync
+      run: rsync -aprtz -e 'ssh -p ${{ secrets.SERVER_PORT }}' ./public/ ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/var/www/allergysafe.life/html
 
