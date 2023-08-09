@@ -24,13 +24,13 @@ jobs:
     - name: Set node version
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18.17
     
     - name: Install dependencies
       run: npm ci
 
     - name: Build
-      run: npm run build
+      run: unset CI && npm run build
 
     - name: Setup SSH
       uses: webfactory/ssh-agent@v0.5.4
