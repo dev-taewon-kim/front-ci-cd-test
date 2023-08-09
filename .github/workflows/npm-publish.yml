@@ -53,5 +53,5 @@ jobs:
           
       
     - name: Transfer builded files via rsync
-      run: rsync -aprtz -e 'ssh -p ${{ secrets.SERVER_PORT }}' ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/var/www/allergysafe.life/html
+      run: rsync -aprtz -e 'ssh -p ${{ secrets.SERVER_PORT }}' build/ ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/var/www/allergysafe.life/html
 
